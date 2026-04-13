@@ -2,8 +2,9 @@
 
 A modern, mobile-first React application for students to discover and book hands-on workshops.
 
-**🔗 Live Demo:** *(Deploy to Netlify - see DEPLOYMENT.md)*
-**📚 Documentation:**
+**Live Demo:** ** https://agent-69dd1f9c2c8ff841fc3572cb--skillhubedu.netlify.app/
+** Documentation:\*\*
+
 - [Deployment Guide](./DEPLOYMENT.md) - How to deploy to GitHub & Netlify
 - [Contributing Guide](./CONTRIBUTING.md) - Development guidelines
 - [Design Details](#design-reasoning) - UX/UI decisions explained below
@@ -90,6 +91,7 @@ http://localhost:3000
 ### How Did You Ensure Responsiveness Across Devices?
 
 **Responsive Strategy:**
+
 - Mobile-first CSS with `clamp()` for fluid typography
 - CSS Grid with `auto-fill, minmax()` — cards reflow from 1 column (mobile) to 3 (desktop) naturally
 - Flex layouts with wrap for horizontal rows
@@ -98,36 +100,39 @@ http://localhost:3000
 - Touch targets: all interactive elements are ≥44×44px
 
 **Tested Breakpoints:**
+
 - Mobile: 375px (iPhone SE)
 - Tablet: 768px
 - Desktop: 1024px and up
 
 **Example:**
+
 ```css
 /* Grid reflows automatically */
 display: grid;
-gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))";
+gridtemplatecolumns: "repeat(auto-fill, minmax(300px, 1fr))";
 
 /* Typography scales smoothly */
-fontSize: "clamp(22px, 4vw, 32px)"
+fontsize: "clamp(22px, 4vw, 32px)";
 ```
 
 ### What Trade-offs Did You Make Between Design & Performance?
 
-| Decision | Why | Impact |
-|----------|-----|--------|
-| Google Fonts (4 families) | +~80KB but visual quality jump is significant | Users see beautiful modern typography instead of system fonts |
-| No animation library | CSS only (avoids Framer Motion +60KB) | Slightly more verbose CSS but zero runtime overhead |
-| No external images | All avatars use initials, icons are inline SVG | +0 image requests, instant render, better perceived performance |
-| Inline SVG icons | No icon font library needed | Zero CLS, instant render, can animate with CSS |
-| CSS custom properties | Zero runtime cost vs CSS-in-JS | Theme switching works without JavaScript |
-| State-based routing (no library) | Custom navigation in React Context | Zero bundle impact, perfect for this scale |
+| Decision                         | Why                                            | Impact                                                          |
+| -------------------------------- | ---------------------------------------------- | --------------------------------------------------------------- |
+| Google Fonts (4 families)        | +~80KB but visual quality jump is significant  | Users see beautiful modern typography instead of system fonts   |
+| No animation library             | CSS only (avoids Framer Motion +60KB)          | Slightly more verbose CSS but zero runtime overhead             |
+| No external images               | All avatars use initials, icons are inline SVG | +0 image requests, instant render, better perceived performance |
+| Inline SVG icons                 | No icon font library needed                    | Zero CLS, instant render, can animate with CSS                  |
+| CSS custom properties            | Zero runtime cost vs CSS-in-JS                 | Theme switching works without JavaScript                        |
+| State-based routing (no library) | Custom navigation in React Context             | Zero bundle impact, perfect for this scale                      |
 
 **Performance Result:** ⚡ Lighthouse scores targeting 90+ across all metrics
 
 ### What Was the Most Challenging Part & How Did You Approach It?
 
 **Challenge 1: Making cards engaging without hero images**
+
 - Problem: Without images, cards felt sparse and uninteresting
 - Solution:
   - Colored top accent bar per category
@@ -137,6 +142,7 @@ fontSize: "clamp(22px, 4vw, 32px)"
   - Result: Cards communicate "alive & interactive" without images
 
 **Challenge 2: Typography on mobile needed breathing room**
+
 - Problem: Big headings looked compressed and hard to read
 - Solution:
   - Reduced font-weight from 800 to 600-700 (modern, lighter weight)
@@ -146,6 +152,7 @@ fontSize: "clamp(22px, 4vw, 32px)"
   - Result: Text feels open, modern, and highly readable
 
 **Challenge 3: Dashboard with no data looks broken**
+
 - Problem: Empty state discourages new users
 - Solution:
   - Overview card has two states: empty (with CTA) and filled (with stats)
@@ -171,36 +178,38 @@ fontSize: "clamp(22px, 4vw, 32px)"
 ## SEO & Accessibility Enhancements
 
 ### Search Engine Optimization
-- ✅ Meta description and keywords for search results
-- ✅ Open Graph tags for social media sharing
-- ✅ Twitter Card meta tags for Twitter preview
-- ✅ Canonical URLs to prevent duplicate content
-- ✅ XML Sitemap for crawler guidance
-- ✅ Robots.txt for bot management
-- ✅ Semantic HTML structure
-- ✅ Mobile-first indexing friendly
+
+- Meta description and keywords for search results
+- Open Graph tags for social media sharing
+- Twitter Card meta tags for Twitter preview
+- Canonical URLs to prevent duplicate content
+- XML Sitemap for crawler guidance
+- Robots.txt for bot management
+- Semantic HTML structure
+- Mobile-first indexing friendly
 
 ### Accessibility (a11y)
-- ✅ WCAG 2.1 Level AA compliant
-- ✅ 44×44px minimum touch targets
-- ✅ Semantic color usage (not color alone for information)
-- ✅ Proper heading hierarchy (h1 → h6)
-- ✅ Focus states on all interactive elements
-- ✅ Keyboard navigation support
-- ✅ Screen reader friendly text alternatives
-- ✅ Sufficient color contrast ratios (4.5:1 for body text, 3:1 for large text)
+
+- WCAG 2.1 Level AA compliant
+- 44×44px minimum touch targets
+- Semantic color usage (not color alone for information)
+- Proper heading hierarchy (h1 → h6)
+- Focus states on all interactive elements
+- Keyboard navigation support
+- Screen reader friendly text alternatives
+- Sufficient color contrast ratios (4.5:1 for body text, 3:1 for large text)
 
 ---
 
 ## Performance Optimizations
 
-| Metric | Target | Optimization |
-|--------|--------|--------------|
-| Lighthouse Performance | 90+ | No render-blocking resources, optimized fonts |
-| First Contentful Paint | < 1.5s | Preconnect to fonts, inline critical CSS |
-| Largest Contentful Paint | < 2.5s | No lazy-loaded hero images |
-| Cumulative Layout Shift | < 0.1 | No font swapping, reserved space |
-| Time to Interactive | < 3.5s | Small React bundle, no heavy libraries |
+| Metric                   | Target | Optimization                                  |
+| ------------------------ | ------ | --------------------------------------------- |
+| Lighthouse Performance   | 90+    | No render-blocking resources, optimized fonts |
+| First Contentful Paint   | < 1.5s | Preconnect to fonts, inline critical CSS      |
+| Largest Contentful Paint | < 2.5s | No lazy-loaded hero images                    |
+| Cumulative Layout Shift  | < 0.1  | No font swapping, reserved space              |
+| Time to Interactive      | < 3.5s | Small React bundle, no heavy libraries        |
 
 ---
 
